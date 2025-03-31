@@ -31,10 +31,8 @@
 
 <script setup lang="ts">
 import Jump from "./jump.vue";
-import {onMounted, reactive, ref,nextTick, watch} from "vue";
-import type {FmInfo} from "../../types";
+import {  ref,nextTick, watch} from "vue";
 import { activeFmItem,isRandomMode, setRandomMode, togglePlayingState } from "../../store"
-import FmList from "../../data/fm.ts";
 const audioRef = ref<HTMLAudioElement | null>(null)
 
 watch(activeFmItem,value=>{
@@ -43,7 +41,6 @@ watch(activeFmItem,value=>{
 },{immediate:true,deep:false})
 
 function handlePlay(){
-    console.log(`---->`,activeFmItem.value)
     if(!activeFmItem.value) return
     audioRef.value && (audioRef.value.src = activeFmItem.value.src)
     nextTick(()=>{

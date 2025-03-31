@@ -20,7 +20,7 @@ const props =  defineProps<{
 }>()
 
 const isActive = computed(()=>{
-    return props.info.src === activeFmItem.value?.src
+    return props.info && props.info.src === activeFmItem.value?.src
 })
 
 </script>
