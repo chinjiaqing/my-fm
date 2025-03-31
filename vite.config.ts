@@ -6,7 +6,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/my-project/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/my-fm/' : '/',
   plugins: [
       vue(),
       UnoCSS()
