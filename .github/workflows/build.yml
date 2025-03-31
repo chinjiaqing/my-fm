@@ -1,0 +1,67 @@
+name: Build and Sync ./dist to deploy
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v3
+        with:
+          ref: master
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # 使用 Node.js 20 版本
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Checkout deploy branch
+        uses: actions/checkout@v3
+        with:
+          ref: deploy
+          path: deploy-branch
+
+      - name: Clean deploy branch directory
+        run: |
+          rm -rf deploy-branch/*
+
+      - name: Copy ./dist to deploy
+        run: cp -r ./dist/* deploy-branch/
+
+      - name: Configure Git
+        run: |
+          cd deploy-branch
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "deploy"
+          git push origin deploy -f
+
+      # - name: Send email notification
+      #   uses: dawidd6/action-send-mail@v2
+      #   with:
+      #     server_address: smtp.163.com
+      #     server_port: 465
+      #     username: ${{ secrets.FROM_EMAIL_ADDRESS }}
+      #     password: ${{ secrets.FROM_EMAIL_TOKEN }}
+      #     subject: "Deploy success！"
+      #     body: "The deploy branch has been updated."
+      #     from: "github"
+      #     to: ${{ secrets.TO_EMAIL_ADDRESS }}
+
+      - name: Clean up
+        run: rm -rf deploy-branch

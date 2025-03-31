@@ -25,7 +25,7 @@ async function downloadImage(imageUrl, filename) {
     // 自动生成文件名（如果未提供）
     const ext = path.extname(parsedUrl.pathname) || '.jpg';
     const finalFilename = filename || v1();
-    const outputPath = path.join(targetDir, finalFilename);
+    const outputPath = path.join(targetDir, finalFilename + ext);
 
     return new Promise((resolve, reject) => {
         const file = fs.createWriteStream(outputPath);
@@ -65,15 +65,11 @@ async function downloadImage(imageUrl, filename) {
 // 使用示例
 (async () => {
     try {
-        const url = 'https://example.com/test.jpg';
+        const url = '';
 
         // 方式1：自动命名
         const savedPath1 = await downloadImage(url);
         console.log('Saved at:', savedPath1);
-
-        // 方式2：自定义文件名
-        const savedPath2 = await downloadImage(url, 'custom-name.png');
-        console.log('Saved at:', savedPath2);
     } catch (err) {
         console.error('Download failed:', err.message);
     }
