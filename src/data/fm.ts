@@ -1,10 +1,19 @@
 import type {FmInfo} from "../types";
-
+const images = import.meta.glob('@/assets/images/*.*',{
+    eager: true,
+    query:'?url'
+});
+function getImage(fileName: string): string {
+    // 匹配键名如 '/src/assets/images/xxx.jpg'
+    const fullName = `/src/assets/images/${fileName}`
+    const key = Object.keys(images).find(k => k.endsWith(`${fullName}`));
+    return key ? (images[key] as any).default : '';
+  }
 const FmList: FmInfo[] = [
     {
         title:'AsiaFM96.5 成都潮流音乐台',
         src:'https://ytcastmp3.radio.cn/65/stream_12401.mp3?type=1&key=07753b890b1fcd00b298ed8ab4dd86c3&time=67ea1539',
-        cover:'/images/53e830f0-0e25-11f0-95f5-9bc77a6ed22b.jpeg',
+        cover:getImage('53e830f0-0e25-11f0-95f5-9bc77a6ed22b.jpeg'),
         category:'音乐',
         type:'audio',
         like:false,
@@ -18,7 +27,7 @@ const FmList: FmInfo[] = [
         playing:false,
         category:'音乐',
         author:'四川广播电视台',
-        cover:'/images/83dfd250-0e33-11f0-93ee-714a48f33565.png'
+        cover:getImage('83dfd250-0e33-11f0-93ee-714a48f33565.png')
     }
 ]
 

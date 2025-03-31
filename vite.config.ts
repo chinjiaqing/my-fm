@@ -2,16 +2,22 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import px2viewport from "postcss-px-to-viewport-8-plugin"
 import UnoCSS from "unocss/vite"
+import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base:'/my-fm/',
+  base: process.env.NODE_ENV === 'production' ? '/my-project/' : '/',
   plugins: [
       vue(),
       UnoCSS()
   ],
   server:{
     host:'0.0.0.0',
+  },
+  resolve:{
+    alias:{
+      '@':path.resolve(__dirname,'./src')
+    }
   },
   css:{
     postcss: {
