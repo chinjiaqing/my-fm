@@ -8,7 +8,7 @@ function getImage(fileName: string): string {
     const fullName = `/src/assets/images/${fileName}`
     const key = Object.keys(images).find(k => k.endsWith(`${fullName}`));
     return key ? (images[key] as any).default : '';
-  }
+}
 const FmList: FmInfo[] = [
     {
         title:'AsiaFM96.5 成都潮流音乐台',

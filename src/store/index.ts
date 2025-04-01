@@ -31,7 +31,7 @@ export function togglePlayingState(flag:boolean){
 }
 export function setActiveFmItem(info: FmInfo) {
     activeFmItem.value && (activeFmItem.value.playing = false)
-	activeFmItem.value = {
+    activeFmItem.value = {
         ...info
     }
 }
@@ -54,7 +54,7 @@ export function filterFmList(item: CategoryItem) {
     activeCategory.value = item
     const allList = toRaw(allFmList.value)
     let list = []
-	if (!cate) {
+    if (!cate) {
         list = allList
     } else if(cate === 'like') {
         list = allList.filter(v=>!!v.like)

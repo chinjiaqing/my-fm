@@ -4,8 +4,8 @@ export interface FmInfo {
     src:string;
     type?: 'audio' | 'video',
     category?:string;
-    like:Boolean;
-    playing:Boolean;
+    like:boolean;
+    playing:boolean;
     author?:string
 }
 
