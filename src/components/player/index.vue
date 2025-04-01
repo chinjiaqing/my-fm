@@ -49,7 +49,9 @@ function handlePlay(){
     if(activeFmItem.value.src.includes(".m3u8")) {
         if(Hls.isSupported()) {
             nextTick(()=>{
-                hls = new Hls()
+                if(!hls) {
+                    hls = new Hls()
+                }
                 hls.loadSource(activeFmItem.value!.src)
                 hls.attachMedia(audioRef.value as HTMLAudioElement)
             })

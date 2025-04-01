@@ -25,7 +25,7 @@
     height: 24px;
     background: #fff;
     animation: barJump 1.2s ease-in-out infinite;
-    border-radius: 2px 2px 0 0; /* 顶部圆角 */
+    border-radius: 2px;
 }
 
 @keyframes barJump {
