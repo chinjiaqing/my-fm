@@ -38,7 +38,7 @@ import Hls from "hls.js"
 let hls:Hls|null;
 const audioRef = ref<HTMLAudioElement | null>(null)
 
-watch(activeFmItem,value=>{
+watch(activeFmItem,_=>{
     handlePlay()
 },{immediate:true,deep:false})
 
