@@ -28,6 +28,33 @@ const FmList: FmInfo[] = [
         category:'音乐',
         author:'四川广播电视台',
         cover:getImage('83dfd250-0e33-11f0-93ee-714a48f33565.png')
+    },
+    {
+        title:'香港凤凰卫视 资讯台',
+        src:'https://playtv-live.ifeng.com/live/06OLEEWQKN4_audio.m3u8',
+        like:false,
+        playing:false,
+        author:'凤凰卫视',
+        category:'新闻',
+        cover:getImage('13269880-0ea3-11f0-b20e-0fbdbca4fb88.jpg')
+    },
+    {
+        title:'CRI环球资讯广播',
+        cover:getImage('2b4ebb40-0ea8-11f0-8d78-571079906296.png'),
+        src:'https://sk.cri.cn/905.m3u8',
+        playing:false,
+        category:'新闻',
+        like:false,
+        author:'CRI中国国际广播电台'
+    },
+    {
+        title:'香港凤凰卫视 中文台',
+        cover:getImage('226d0f80-0ea9-11f0-b100-b39d5ff17c3c.jpg'),
+        src:'https://playtv-live.ifeng.com/live/06OLEGEGM4G_audio.m3u8',
+        playing:false,
+        category:'新闻',
+        like:false,
+        author:'凤凰卫视'
     }
 ]
 

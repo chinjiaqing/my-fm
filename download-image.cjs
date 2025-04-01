@@ -6,7 +6,7 @@ const { URL } = require('url');
 const { v1 } = require("uuid")
 
 // 创建目标目录（如果不存在）
-const targetDir = path.join(__dirname, 'public', 'images');
+const targetDir = path.join(__dirname, 'src/assets', 'images');
 if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
 }

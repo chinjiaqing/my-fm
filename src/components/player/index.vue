@@ -33,18 +33,31 @@
 import Jump from "./jump.vue";
 import {  ref,nextTick, watch} from "vue";
 import { activeFmItem,isRandomMode, setRandomMode, togglePlayingState } from "../../store"
+import Hls from "hls.js"
+
+let hls:Hls|null;
 const audioRef = ref<HTMLAudioElement | null>(null)
 
 watch(activeFmItem,value=>{
-    console.log('%c [ value ]-41', 'font-size:13px; background:pink; color:#bf2c9f;', value)
     handlePlay()
 },{immediate:true,deep:false})
 
 function handlePlay(){
     if(!activeFmItem.value) return
-    audioRef.value && (audioRef.value.src = activeFmItem.value.src)
+    hls && hls.destroy()
+    audioRef.value && (audioRef.value.src = '')
+    if(activeFmItem.value.src.includes(".m3u8")) {
+        if(Hls.isSupported()) {
+            nextTick(()=>{
+                hls = new Hls()
+                hls.loadSource(activeFmItem.value!.src)
+                hls.attachMedia(audioRef.value as HTMLAudioElement)
+            })
+        }
+    }else{
+        audioRef.value && (audioRef.value.src = activeFmItem.value.src)
+    }
     nextTick(()=>{
-        console.log(audioRef.value)
         audioRef.value && audioRef.value.play()
     })
 }
