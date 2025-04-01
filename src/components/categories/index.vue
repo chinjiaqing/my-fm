@@ -1,6 +1,6 @@
 <template>
     <div class="flex p-30px items-center overflow-x-auto gap-20px">
-        <div @click="filterFmList(cate)" :class="[cate.active ? 'bg-primary color-#fff' : '']" class="cate-item rounded-20px py-6px font-size-28px bg-#fff px-30px" v-for="cate in fmCategories" :key="cate.title">
+        <div @click="filterFmList(cate)" :class="[cate.active ? 'active' : '']" class="cate-item rounded-20px py-6px font-size-28px bg-#fff px-30px" v-for="cate in fmCategories" :key="cate.title">
             {{ cate.title }}
         </div>
     </div>
@@ -19,5 +19,8 @@ onMounted(()=>{
 </script>
 
 <style lang="scss" scoped>
-
+.active {
+    background: var(--color-primary);
+    color: #fff;
+}
 </style>
