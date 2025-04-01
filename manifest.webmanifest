@@ -1,0 +1,1 @@
+{"name":"MY FM | 我的收音机","short_name":"MY FM","description":"简单听一听","start_url":"/my-fm/","display":"standalone","background_color":"#ffffff","theme_color":"#7f64f8","lang":"en","scope":"/my-fm/","icons":[{"src":"fm.png","sizes":"625x625","type":"image/png"}]}
